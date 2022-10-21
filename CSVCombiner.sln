@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVCombiner", "CSVCombiner\CSVCombiner.csproj", "{00FE793A-27C9-49CA-9487-A9FDBE67D176}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00FE793A-27C9-49CA-9487-A9FDBE67D176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00FE793A-27C9-49CA-9487-A9FDBE67D176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00FE793A-27C9-49CA-9487-A9FDBE67D176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00FE793A-27C9-49CA-9487-A9FDBE67D176}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {654A2562-59FF-4A14-944E-DEFA71D228BA}
+	EndGlobalSection
+EndGlobal
