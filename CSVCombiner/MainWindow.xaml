@@ -25,5 +25,6 @@
         </Image>
         <Frame x:Name="Frame_DropFile1" Content="" HorizontalAlignment="Center" Height="250" Margin="0,55,0,0" VerticalAlignment="Top" Width="430" BorderBrush="Red" Foreground="Red" Background="Red"/>
         <Frame x:Name="Frame_DropFile2" Content="" HorizontalAlignment="Center" Height="250" Margin="0,355,0,0" VerticalAlignment="Top" Width="430" BorderBrush="#FF004AFF" Background="#FF0098FF" AllowDrop="True"/>
+        <Button x:Name="Button_execute" Content="Button" HorizontalAlignment="Left" Height="44" Margin="345,730,0,0" VerticalAlignment="Top" Width="95" Click="Button_execute_Click"/>
     </Grid>
 </Window>

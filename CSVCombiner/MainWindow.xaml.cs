@@ -67,10 +67,19 @@ namespace CSVCombiner
                     }
                     if(Global.File1_Exist && Global.File2_Exist)
                     {
-                        button_execute.visibility == visible;
+                        Button_execute.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        Button_execute.Visibility = Visibility.Hidden;
                     }
                 }
             };
+        }
+
+        private void Button_execute_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
