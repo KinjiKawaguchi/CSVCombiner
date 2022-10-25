@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CSVCombiner
 {
@@ -24,16 +16,56 @@ namespace CSVCombiner
         {
             InitializeComponent();
 
+            LoadCountry();
+
             EnableDragDrop(DatePicker_DropFile1);
             EnableDragDrop(DatePicker_DropFile2);
         }
 
         public static class Global////Global変数定義
         {
-            public static string File1_Path = "";
-            public static string File2_Path = "";
+            public static string File1_Path;
+            public static string File2_Path;
             public static bool File1_Exist = false;
             public static bool File2_Exist = false;
+
+            public static string[] CountryCode;
+            public static string[] CountryName;
+        }
+
+        private static async void LoadCountry()
+        {
+            string CountryCode_Path = "";
+            string CountryName_Path = "";
+            int Number_Country = 0;
+            try
+            {
+                using (StreamReader sr = new(CountryCode_Path, Encoding.GetEncoding("Shift_JIS")))
+                {
+                    for (int i = 0; i < Number_Country; i++)
+                    {
+#pragma warning disable CS8601 // Null 参照代入の可能性があります。
+                        Global.CountryCode[i] = sr.ReadLine();
+                    }
+                }
+
+                using (StreamReader sr = new(CountryName_Path, Encoding.GetEncoding("Shift_JIS")))
+                {
+                    for (int i = 0; i < Number_Country; i++)
+                    {
+                        Global.CountryName[i] = sr.ReadLine();
+#pragma warning restore CS8601 // Null 参照代入の可能性があります。
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("国関連の情報読込みに失敗しました" +
+                    "\nアプリケーションを終了します。");
+                await Task.Delay(2000);
+                Application.Current.Shutdown();
+            }
+
         }
 
         private void EnableDragDrop(Control control)
@@ -55,7 +87,7 @@ namespace CSVCombiner
                 if (e.Data.GetDataPresent(DataFormats.FileDrop)) // ドロップされたものがファイルかどうか確認する。
                 {
                     string[] path = ((string[])e.Data.GetData(DataFormats.FileDrop));
-                    if (CSV_Check(path[0]))
+                    if (File_Check(path[0]))
                     {
                         if (Global.File1_Path == path[0] || Global.File2_Path == path[0])
                         {
@@ -66,7 +98,7 @@ namespace CSVCombiner
                         {
                             Global.File1_Path = path[0];
                             Global.File1_Exist = true;
-                            
+
                         }
                         else
                         {
@@ -78,11 +110,6 @@ namespace CSVCombiner
                             Button_Execute.Visibility = Visibility.Visible;
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("選択されたファイルはCSV形式では内容です。" +
-                            "\n拡張子を確認してください");
-                    }
                 }
             };
         }
@@ -92,14 +119,14 @@ namespace CSVCombiner
 
         }
 
-        private bool CSV_Check(String path)
+        private bool File_Check(string path)
         {
-            if(path == Global.File1_Path || path == Global.File2_Path)
+            if (path == Global.File1_Path || path == Global.File2_Path)
             {
                 MessageBox.Show("同じファイルが指定されています。");
                 return false;
             }
-            if(path.Substring(path.Length -4) == ".csv")
+            if (path[^4..] == ".csv")
             {
                 return true;
             }
