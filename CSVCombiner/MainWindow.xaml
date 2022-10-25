@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CSVcat"
+        xmlns:local="clr-namespace:CSVCombiner"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="450">
     <Grid>
@@ -24,7 +24,9 @@
             </Image.OpacityMask>
         </Image>
         <Frame x:Name="Frame_DropFile1" Content="" HorizontalAlignment="Center" Height="250" Margin="0,55,0,0" VerticalAlignment="Top" Width="430" BorderBrush="Red" Foreground="Red" Background="Red"/>
-        <Frame x:Name="Frame_DropFile2" Content="" HorizontalAlignment="Center" Height="250" Margin="0,355,0,0" VerticalAlignment="Top" Width="430" BorderBrush="#FF004AFF" Background="#FF0098FF" AllowDrop="True"/>
-        <Button x:Name="Button_execute" Content="Button" HorizontalAlignment="Left" Height="44" Margin="345,730,0,0" VerticalAlignment="Top" Width="95" Click="Button_execute_Click"/>
+        <Frame x:Name="Frame_DropFile2" Content="" HorizontalAlignment="Center" Height="250" Margin="0,355,0,0" VerticalAlignment="Top" Width="430" BorderBrush="#FF004AFF" Background="#FF0098FF"/>
+        <Button x:Name="Button_Execute" Content="Button" HorizontalAlignment="Center" Height="64" Margin="0,686,0,0" VerticalAlignment="Top" Width="430" Visibility="Hidden" Cursor="Hand"/>
+        <DatePicker x:Name="DatePicker_DropFile1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Height="250" Width="430" AllowDrop="True"/>
+        <DatePicker x:Name="DatePicker_DropFile2" HorizontalAlignment="Center" Margin="0,355,0,0" VerticalAlignment="Top" Height="250" Width="430" AllowDrop="True"/>
     </Grid>
 </Window>

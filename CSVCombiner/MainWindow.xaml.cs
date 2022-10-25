@@ -20,20 +20,20 @@ namespace CSVCombiner
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            EnableDragDrop(DatePicker_DropFile1);
+            EnableDragDrop(DatePicker_DropFile2);
+        }
+
         public static class Global////Global変数定義
         {
             public static string File1_Path = "";
             public static string File2_Path = "";
             public static bool File1_Exist = false;
             public static bool File2_Exist = false;
-        }
-
-        public MainWindow()
-        {
-            InitializeComponent();
-
-            EnableDragDrop(Frame_DropFile1);
-            EnableDragDrop(Frame_DropFile2);
         }
 
         private void EnableDragDrop(Control control)
@@ -54,32 +54,61 @@ namespace CSVCombiner
             {
                 if (e.Data.GetDataPresent(DataFormats.FileDrop)) // ドロップされたものがファイルかどうか確認する。
                 {
-                    string[] paths = ((string[])e.Data.GetData(DataFormats.FileDrop));
-                    if (control.Name == "Frame_DropFile1")
+                    string[] path = ((string[])e.Data.GetData(DataFormats.FileDrop));
+                    if (CSV_Check(path[0]))
                     {
-                        Global.File1_Path = paths[0];
-                        Global.File1_Exist = true;
+                        if (Global.File1_Path == path[0] || Global.File2_Path == path[0])
+                        {
+                            MessageBox.Show("同じファイルが選択されています。");
+                            return;
+                        }
+                        if (control.Name == "Frame_DropFile1")
+                        {
+                            Global.File1_Path = path[0];
+                            Global.File1_Exist = true;
+                            
+                        }
+                        else
+                        {
+                            Global.File2_Path = path[0];
+                            Global.File2_Exist = true;
+                        }
+                        if (Global.File1_Exist && Global.File2_Exist)
+                        {
+                            Button_Execute.Visibility = Visibility.Visible;
+                        }
                     }
                     else
                     {
-                        Global.File2_Path = paths[0];
-                        Global.File2_Exist = true;
-                    }
-                    if(Global.File1_Exist && Global.File2_Exist)
-                    {
-                        Button_execute.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        Button_execute.Visibility = Visibility.Hidden;
+                        MessageBox.Show("選択されたファイルはCSV形式では内容です。" +
+                            "\n拡張子を確認してください");
                     }
                 }
             };
         }
 
-        private void Button_execute_Click(object sender, RoutedEventArgs e)
+        private void Button_Execute_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private bool CSV_Check(String path)
+        {
+            if(path == Global.File1_Path || path == Global.File2_Path)
+            {
+                MessageBox.Show("同じファイルが指定されています。");
+                return false;
+            }
+            if(path.Substring(path.Length -4) == ".csv")
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("指令されたファイルはCSVでは内容です。" +
+                    "\nファイルの拡張子を確認してください。");
+                return false;
+            }
         }
     }
 }
