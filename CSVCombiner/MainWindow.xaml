@@ -23,8 +23,8 @@
                 <ImageBrush ImageSource="/icon.png" Stretch="None" TileMode="FlipY"/>
             </Image.OpacityMask>
         </Image>
-        <Frame x:Name="Frame_DropFile1" Content="" HorizontalAlignment="Center" Height="250" Margin="0,55,0,0" VerticalAlignment="Top" Width="430" BorderBrush="Red" Foreground="Red" Background="Red"/>
-        <Frame x:Name="Frame_DropFile2" Content="" HorizontalAlignment="Center" Height="250" Margin="0,355,0,0" VerticalAlignment="Top" Width="430" BorderBrush="#FF004AFF" Background="#FF0098FF"/>
+        <Frame x:Name="Frame_DropFile1" Content="CSVファイルをドラッグアンドドロップしてください。" HorizontalAlignment="Center" Height="250" Margin="0,55,0,0" VerticalAlignment="Top" Width="430" BorderBrush="Red" Foreground="Red" Background="Red"/>
+        <Frame x:Name="Frame_DropFile2" Content="CSVファイルをドラッグアンドドロップしてください。" HorizontalAlignment="Center" Height="250" Margin="0,355,0,0" VerticalAlignment="Top" Width="430" BorderBrush="#FF004AFF" Background="#FF0098FF"/>
         <Button x:Name="Button_Execute" Content="Button" HorizontalAlignment="Center" Height="64" Margin="0,686,0,0" VerticalAlignment="Top" Width="430" Visibility="Hidden" Cursor="Hand"/>
         <DatePicker x:Name="DatePicker_DropFile1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Height="250" Width="430" AllowDrop="True"/>
         <DatePicker x:Name="DatePicker_DropFile2" HorizontalAlignment="Center" Margin="0,355,0,0" VerticalAlignment="Top" Height="250" Width="430" AllowDrop="True"/>

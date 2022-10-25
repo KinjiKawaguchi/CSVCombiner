@@ -16,7 +16,7 @@ namespace CSVCombiner
         {
             InitializeComponent();
 
-            LoadCountry();
+            //LoadCountry();
 
             EnableDragDrop(DatePicker_DropFile1);
             EnableDragDrop(DatePicker_DropFile2);
@@ -89,21 +89,18 @@ namespace CSVCombiner
                     string[] path = ((string[])e.Data.GetData(DataFormats.FileDrop));
                     if (File_Check(path[0]))
                     {
-                        if (Global.File1_Path == path[0] || Global.File2_Path == path[0])
-                        {
-                            MessageBox.Show("同じファイルが選択されています。");
-                            return;
-                        }
-                        if (control.Name == "Frame_DropFile1")
+                        if (control.Name == "DatePicker_DropFile1")
                         {
                             Global.File1_Path = path[0];
                             Global.File1_Exist = true;
+                            Frame_DropFile1.Content = Global.File1_Path;
 
                         }
                         else
                         {
                             Global.File2_Path = path[0];
                             Global.File2_Exist = true;
+                            Frame_DropFile2.Content = Global.File2_Path;
                         }
                         if (Global.File1_Exist && Global.File2_Exist)
                         {
@@ -116,7 +113,7 @@ namespace CSVCombiner
 
         private void Button_Execute_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("ボタンが押されたんごね");
         }
 
         private bool File_Check(string path)
@@ -132,7 +129,7 @@ namespace CSVCombiner
             }
             else
             {
-                MessageBox.Show("指令されたファイルはCSVでは内容です。" +
+                MessageBox.Show("指令されたファイルはCSVではありません。" +
                     "\nファイルの拡張子を確認してください。");
                 return false;
             }
