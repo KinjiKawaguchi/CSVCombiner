@@ -35,8 +35,8 @@ namespace CSVCombiner
 
         private static async void LoadCountry()
         {
-            string CountryCode_Path = "";
-            string CountryName_Path = "";
+            string CountryCode_Path = "./data\\CountryCode.txt";
+            string CountryName_Path = "./data\\CountryName.txt";
             int Number_Country = 0;
             try
             {
