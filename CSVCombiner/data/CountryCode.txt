@@ -1,0 +1,238 @@
+AD	AND	020	アンドラ公国	ANDORRA	Principality of Andorra
+AE	ARE	784	アラブ首長国連邦	UNITED ARAB EMIRATES	
+AF	AFG	004	アフガニスタン・イスラム国	AFGHANISTAN	Islamic State of Afghanistan
+AG	ATG	028	アンチグア・バーブーダ	ANTIGUA AND BARBUDA	
+AI	AIA	660	アンギラ	ANGUILLA	
+AL	ALB	008	アルバニア共和国	ALBANIA	Republic of Albania
+AM	ARM	051	アルメニア共和国	ARMENIA	Republic of Armenia
+AN	ANT	530	オランダ領アンチル	NETHERLANDS ANTILLES	
+AO	AGO	024	アンゴラ共和国	ANGOLA	Republic of Angola
+AQ	ATA	010	南極	ANTARCTICA	
+AR	ARG	032	アルゼンチン共和国	ARGENTINA	Argentine Republic
+AS	ASM	016	米領サモア	AMERICAN SAMOA	
+AT	AUT	040	オーストリア共和国	AUSTRIA	Republic of Austria
+71	AU	AUS	036	オーストラリア	AUSTRALIA	
+AW	ABW	533	アルバ	ARUBA	
+AZ	AZE	031	アゼルバイジャン共和国	AZERBAIJAN	Azerbaijani Republic
+BA	BIH	070	(ボスニア・ヘルツェゴビナ共和国)	BOSNIA AND HERZEGOVINA	Republic of Bosnia and Herzegovina
+BB	BRB	052	バルバドス	BARBADOS	
+BD	BGD	050	バングラデシュ人民共和国	BANGLADESH	People's Republic of Bangladesh
+BE	BEL	056	ベルギー王国	BELGIUM	Kingdom of Belgium
+BF	BFA	854	ブルキナファソ	BURKINA FASO	
+BG	BGR	100	ブルガリア共和国	BULGARIA	Republic of Bulgaria
+BH	BHR	048	バーレーン国	BAHRAIN	State of Bahrain
+BI	BDI	108	ブルンジ共和国	BURUNDI	Republic of Burundi
+BJ	BEN	204	ベナン共和国	BENIN	Republic of Benin
+BM	BMU	060	バーミューダ諸島	BERMUDA	
+BN	BRN	096	ブルネイ・ダルサラーム国	BRUNEI DARUSSALAM	
+BO	BOL	068	ボリビア共和国	BOLIVIA	Republic of Bolivia
+BR	BRA	076	ブラジル連邦共和国	BRAZIL	Federative Republic of Brazil
+BS	BHS	044	バハマ国	BAHAMAS	Commonwealth of the Bahamas
+BT	BTN	064	ブータン王国	BHUTAN	Kingdom of Bhutan
+BV	BVT	074	ブーベ島	BOUVET ISLAND	
+BW	BWA	072	ボツワナ共和国	BOTSWANA	Republic of Botswana
+BY	BLR	112	ベラルーシ共和国	BELARUS	Republic of Belarus
+BZ	BLZ	084	ベリーズ	BELIZE	
+CA	CAN	124	カナダ	CANADA	
+CC	CCK	166	ココス諸島	COCOS (KEELING) ISLANDS	
+CF	CAF	140	中央アフリカ共和国	CENTRAL AFRICAN REPUBLIC	
+CG	COG	178	コンゴ共和国	CONGO	Republic of the Congo
+CH	CHE	756	スイス連邦	SWITZERLAND	Swiss Confederation
+CI	CIV	384	コートジボアール共和国	COTE D'IVOIRE	Republic of Cote d'Ivoire
+CK	COK	184	クック諸島	COOK ISLANDS	
+CL	CHL	152	チリ共和国	CHILE	Republic of Chile
+CM	CMR	120	カメルーン共和国	CAMEROON	Republic of Cameroon
+CN	CHN	156	中華人民共和国	CHINA	People's Republic of China
+CO	COL	170	コロンビア共和国	COLOMBIA	Republic of Colombia
+CR	CRI	188	コスタリカ共和国	COSTA RICA	Republic of Costa Rica
+CU	CUB	192	キューバ共和国	CUBA	Republic of Cuba
+CV	CPV	132	カーボベルデ共和国	CAPE VERDE	Republic of Cape Verde
+CX	CXR	162	クリスマス島	CHRISTMAS ISLAND	
+CY	CYP	196	キプロス共和国	CYPRUS	Republic of Cyprus
+CZ	CZE	203	チェコ共和国	CZECH REPUBLIC	
+DE	DEU	276	ドイツ連邦共和国	GERMANY	Federal Republic of Germany
+DJ	DJI	262	ジブチ共和国	DJIBOUTI	Republic of Djibouti
+DK	DNK	208	デンマーク王国	DENMARK	Kingdom of Denmark
+DM	DMA	212	ドミニカ国	DOMINICA	Commonwealth of Dominica
+DO	DOM	214	ドミニカ共和国	DOMINICAN REPUBLIC	
+DZ	DZA	012	アルジェリア民主人民共和国	ALGERIA	People's Democratic Republic of Algeria
+EC	ECU	218	エクアドル共和国	ECUADOR	Republic of Ecuador
+EE	EST	233	エストニア共和国	ESTONIA	Republic of Estonia
+EG	EGY	818	エジプト・アラブ共和国	EGYPT	Arab Republic of Egypt
+EH	ESH	732	西サハラ	WESTERN SAHARA	
+ER	ERI	232	エリトリア	ERITREA	
+ES	ESP	724	スペイン	SPAIN	Kingdom of Spain
+ET	ETH	231	エチオピア	ETHIOPIA	
+FI	FIN	246	フィンランド共和国	FINLAND	Republic of Finland
+FJ	FJI	242	フィジー共和国	FIJI	Republic of Fiji
+FK	FLK	238	フォークランド(マルビナス)諸島	FALKLAND ISLAND (MALVINAS)	
+FM	FSM	583	ミクロネシア連邦	MICRONESIA (FEDERATED STATES OF)	Federated States of Micronesia
+FO	FRO	234	フェロー諸島	FAROE ISLANDS	
+FR	FRA	250	フランス共和国	FRANCE	French Republic
+FX	FXX	249	フランス本国	FRANCE, METROPOLITAN	
+GA	GAB	266	ガボン共和国	GABON	Gabonese Republic
+GB	GBR	826	グレートブリテン及び北部アイルランド連合王国(英国)	UNITED KINGDOM	United Kingdom of Great Britain and Northern Ireland
+GD	GRD	308	グレナダ	GRENADA	
+GE	GEO	268	グルジア共和国	GEORGIA	Republic of Georgia
+GF	GUF	254	仏領ギアナ	FRENCH GUIANA	Department of Guiana
+GH	GHA	288	ガーナ共和国	GHANA	Republic of Ghana
+GI	GIB	292	ジブラルタル	GIBRALTAR	
+GL	GRL	304	グリーンランド	GREENLAND	
+GM	GMB	270	ガンビア共和国	GAMBIA	Republic of the Gambia
+GN	GIN	324	ギニア共和国	GUINEA	Republic of Guinea
+GP	GLP	312	グアドループ島	GUADELOUPE	Department of Guadeloupe
+GQ	GNQ	226	赤道ギニア共和国	EQUATORIAL GUINEA	Republic of Equatorial Guinea
+GR	GRC	300	ギリシア共和国	GREECE	Hellenic Republic
+GS	SGS	239	南ジョージア島・南サンドイッチ諸島	SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS	
+GT	GTM	320	グアテマラ共和国	GUATEMALA	Republic of Guatemala
+GU	GUM	316	グアム	GUAM	
+GW	GNB	624	ギニアビサオ共和国	GUINEA-BISSAU	Republic of Guinea-Bissau
+GY	GUY	328	ガイアナ協同共和国	GUYANA	Republic of Guyana
+HK	HKG	344	ホンコン (香港)	HONG KONG	
+HM	HMD	334	ヘアド島・マクドナルド諸島	HEARD ISLAND AND MCDONALD ISLANDS	
+HN	HND	340	ホンジュラス共和国	HONDURAS	Republic of Honduras
+HR	HRV	191	クロアチア共和国	CROATIA	Republic of Croatia
+HT	HTI	332	ハイチ共和国	HAITI	Republic of Haiti
+HU	HUN	348	ハンガリー共和国	HUNGARY	Republic of Hungary
+ID	IDN	360	インドネシア共和国	INDONESIA	Republic of Indonesia
+IE	IRL	372	アイルランド	IrelAND	
+IL	ISR	376	イスラエル国	ISRAEL	State of Israel
+IN	IND	356	インド	INDIA	Republic of India
+IO	IOT	086	英領インド洋地域	BRITISH INDIAN OCEAN TERRITORY	
+IQ	IRQ	368	イラク共和国	IRAQ	Republic of Iraq
+IR	IRN	364	イラン・イスラム共和国	IRAN (ISLAMIC REPUBLIC OF)	Islamic Republic of Iran
+IS	ISL	352	アイスランド共和国	ICELAND	Republic of Iceland
+IT	ITA	380	イタリア共和国	ITALY	Italian Republic
+JM	JAM	388	ジャマイカ	JAMAICA	
+JO	JOR	400	ヨルダン・ハシミテ王国	JORDAN	Hashemite Kingdom of Jordan
+JP	JPN	392	日本国	JAPAN	
+KE	KEN	404	ケニア共和国	KENYA	Republic of Kenya
+KG	KGZ	417	キルギスタン共和国	KYRGYZSTAN	Kyrgyz Republic
+KH	KHM	116	カンボディア王国	CAMBODIA	Kingdom of Cambodia
+KI	KIR	296	キリバス共和国	KIRIBATI	
+KM	COM	174	コモロ・イスラム連邦共和国	COMOROS	Islamic Federal Republic of the Comoros
+KN	KNA	659	セントクリストファー・ネイビス	SAINT KITTS AND NEVIS	
+KP	PRK	408	(北朝鮮=朝鮮民主主義人民共和国)	KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF	
+KR	KOR	410	大韓民国	KOREA, REPUBLIC OF	
+KW	KWT	414	クウェート国	KUWAIT	State of Kuwait
+KY	CYM	136	ケイマン諸島	CAYMAN ISLANDS	
+KZ	KAZ	398	カザフスタン共和国	KAZAKHSTAN	Republic of Kazakhstan
+LA	LAO	418	ラオス人民民主共和国	LAO PEOPLE'S DEMOCRATIC REPUBLIC	
+LB	LBN	422	レバノン共和国	LEBANON	Lebanese Republic
+LC	LCA	662	セントルシア	SAINT LUCIA	
+LI	LIE	438	リヒテンシュタイン公国	LIECHTENSTEIN	Principality of Liechtenstein
+LK	LKA	144	スリランカ民主社会主義共和国	SRI LANKA	Democratic Socialist Republic of Sri Lanka
+LR	LBR	430	リベリア共和国	LIBERIA	Republic of Liberia
+LS	LSO	426	レソト王国	LESOTHO	Kingdom of Lesotho
+LT	LTU	440	リトアニア共和国	LITHUANIA	Republic of Lithuania
+LU	LUX	442	ルクセンブルク大公国	LUXEMBOURG	Grand Duchy of Luxembourg
+LV	LVA	428	ラトビア共和国	LATVIA	Republic of Latvia
+LY	LBY	434	社会主義人民リビア・アラブ国	LIBYAN ARAB JAMAHIRIYA	Socialist People's Libyan Arab Jamahiriya
+MA	MAR	504	モロッコ王国	MOROCCO	Kingdom of Morocco
+MC	MCO	492	モナコ公国	MONACO	Principality of Monaco
+MD	MDA	498	モルドバ共和国	MOLDOVA, REPUBLIC OF	
+MG	MDG	450	マダガスカル共和国	MADAGASCAR	Republic of Madagascar
+MH	MHL	584	マーシャル諸島共和国	MARSHALL ISLANDS	Republic of the Marshall Islands
+ML	MLI	466	マリ共和国	MALI	Republic of Mali
+MM	MMR	104	ミャンマー連邦	MYANMAR	Union of Myanmar
+MN	MNG	496	モンゴル国	MONGOLIA	
+MO	MAC	446	マカオ(澳門)	MACAU	
+MP	MNP	580	北マリアナ諸島	NORTHERN MARIANA ISLANDS	Commonwealth of the Northern Mariana Islands
+MQ	MTQ	474	マルチニーク島	MARTINIQUE	Department of Martinique
+MR	MRT	478	モーリタニア・イスラム共和国	MAURITANIA	Islamic Republic of Mauritania
+MS	MSR	500	モントセラト	MONTSERRAT	
+MT	MLT	470	マルタ共和国	MALTA	Republic of Malta
+MU	MUS	480	モーリシャス共和国	MAURITIUS	Republic of Mauritius
+MV	MDV	462	モルジブ共和国	MALDIVES	Republic of Maldives
+MW	MWI	454	マラウイ共和国	MALAWI	Republic of Malawi
+MX	MEX	484	メキシコ合衆国	MEXICO	United Mexican States
+MY	MYS	458	マレーシア	MALAYSIA	
+MZ	MOZ	508	モザンビーク共和国	MOZAMBIQUE	Republic of Mozambique
+NA	NAM	516	ナミビア共和国	NAMIBIA	Republic of Namibia
+NC	NCL	540	ニューカレドニア	NEW CALEDONIA	
+NE	NER	562	ニジェール共和国	NIGER	Republic of Niger
+NF	NFK	574	ノーフォーク島	NORFOLK ISLAND	
+NG	NGA	566	ナイジェリア連邦共和国	NIGERIA	Federal Republic of Nigeria
+NI	NIC	558	ニカラグア共和国	NICARAGUA	Republic of Nicaragua
+NL	NLD	528	オランダ王国	NETHERLANDS	Kingdom of the Netherlands
+NO	NOR	578	ノルウェー王国	NORWAY	Kingdom of Norway
+NP	NPL	524	ネパール王国	NEPAL	Kingdom of Nepal
+NR	NRU	520	ナウル共和国	NAURU	Republic of Nauru
+NU	NIU	570	ニウエ	NIUE	
+NZ	NZL	554	ニュージーランド	NEW ZEALAND	
+OM	OMN	512	オマーン国	OMAN	Sultanate of Oman
+PA	PAN	591	パナマ共和国	PANAMA	Republic of Panama
+PE	PER	604	ペルー共和国	PERU	Republic of Peru
+PF	PYF	258	仏領ポリネシア	FRENCH POLYNESIA	
+PG	PNG	598	パプアニューギニア	PAPUA NEW GUINEA	
+PH	PHL	608	フィリピン共和国	PHILIPPINES	Republic of the Philippines
+PK	PAK	586	パキスタン・イスラム共和国	PAKISTAN	Islamic Republic of Pakistan
+PL	POL	616	ポーランド共和国	POLAND	Republic of Poland
+PM	SPM	666	サンピエール島・ミクロン島	SAINT PIERRE AND MIQUELON	Territorial collectivity of St. Pierre and Miquelon
+PN	PCN	612	ピトケアン島	PITCAIRN	
+PR	PRI	630	プエルトリコ	PUERTO RICO	
+PT	PRT	620	ポルトガル共和国	PORTUGAL	Portuguese Republic
+PW	PLW	585	パラオ	PALAU	Republic of Palau
+PY	PRY	600	パラグアイ共和国	PARAGUAY	Republic of Paraguay
+QA	QAT	634	カタール国	QATAR	State of Qatar
+RE	REU	638	レユニオン	REUNION	Department of Reunion
+RO	ROM	642	ルーマニア	ROMANIA	
+RU	RUS	643	ロシア連邦	RUSSIAN FEDERATION	
+RW	RWA	646	ルワンダ共和国	RWANDA	Rwandese Republic
+SA	SAU	682	サウジアラビア王国	SAUDI ARABIA	Kingdom of Saudi Arabia
+SB	SLB	090	ソロモン諸島	SOLOMON ISLANDS	
+SC	SYC	690	セイシェル共和国	SEYCHELLES	Republic of Seychelles
+SD	SDN	736	スーダン共和国	SUDAN	Republic of the Sudan
+SE	SWE	752	スウェーデン王国	SWEDEN	Kingdom of Sweden
+SG	SGP	702	シンガポール共和国	SINGAPORE	Republic of Singapore
+SH	SHN	654	セントヘレナ島	SAINT HELENA	
+SI	SVN	705	スロベニア共和国	SLOVENIA	Republic of Slovenia
+SJ	SJM	744	スバールバル諸島・ヤンマイエン島	SVALBARD AND JAN MAYEN	
+SK	SVK	703	スロバキア共和国	SLOVAKIA	Slovak Republic
+SL	SLE	694	シエラレオネ共和国	SIERRA LEONE	Republic of Sierra Leone
+SM	SMR	674	サンマリノ共和国	SAN MARINO	Republic of San Marino
+SN	SEN	686	セネガル共和国	SENEGAL	Republic of Senegal
+SO	SOM	706	ソマリア民主共和国	SOMALIA	Somali Democratic Republic
+SR	SUR	740	スリナム共和国	SURINAME	Republic of Suriname
+ST	STP	678	サントメ・プリンシペ民主共和国	SAO TOME AND PRINCIPE	Democratic Republic of Sao Tome and Principe
+SV	SLV	222	エルサルバドル共和国	EL SALVADOR	Republic of El Salvador
+SY	SYR	760	シリア・アラブ共和国	SYRIAN ARAB REPUBLIC	
+SZ	SWZ	748	スワジランド王国	SWAZILAND	Kingdom of Swaziland
+TC	TCA	796	タークス諸島・カイコス諸島	TURKS AND CAICOS ISLANDS	
+TD	TCD	148	チャド共和国	CHAD	Republic of Chad
+TF	ATF	260	仏領極南諸島	FRENCH SOUTHERN TERRITORIES	
+TG	TGO	768	トーゴ共和国	TOGO	Togolese Republic
+TH	THA	764	タイ王国	THAILAND	Kingdom of Thailand
+TJ	TJK	762	タジキスタン共和国	TAJIKISTAN	Republic of Tajikistan
+TK	TKL	772	トケラウ諸島	TOKELAU	
+TM	TKM	795	トルクメニスタン	TURKMENISTAN	
+TN	TUN	788	チュニジア共和国	TUNISIA	Republic of Tunisia
+TO	TON	776	トンガ王国	TONGA	Kingdom of Tonga
+TP	TMP	626	東チモール	EAST TIMOR	
+TR	TUR	792	トルコ共和国	TURKEY	Republic of Turkey
+TT	TTO	780	トリニダード・トバゴ共和国	TRINIDAD AND TOBAGO	Republic of Trinidad and Tobago
+TV	TUV	798	ツバル	TUVALU	
+TW	TWN	158	台湾	TAIWAN, PROVINCE OF CHINA	
+TZ	TZA	834	タンザニア連合共和国	TANZANIA, UNITED REPUBLIC OF	
+UA	UKR	804	ウクライナ	UKRAINE	
+UG	UGA	800	ウガンダ共和国	UGANDA	Republic of Uganda
+UM	UMI	581	米領太平洋諸島	UNITED STATES MINOR OUTLYING ISLANDS	
+US	USA	840	アメリカ合衆国(米国)	UNITED STATES	United States of America
+UY	URY	858	ウルグアイ東方共和国	URUGUAY	Eastern Republic of Uruguay
+UZ	UZB	860	ウズベキスタン共和国	UZBEKISTAN	Republic of Uzbekistan
+VA	VAT	336	バチカン市国	VATICAN CITY STATE (HOLY SEE)	
+VC	VCT	670	セントビンセント及びグレナディーン諸島	SAINT VINCENT AND THE GRENADINES	
+VE	VEN	862	ベネズエラ共和国	VENEZUELA	Republic of Venezuela
+VG	VGB	092	英領バージン諸島	VIRGIN ISLANDS (BRITISH )	
+VI	VIR	850	米領バージン諸島	VIRGIN ISLANDS (U.S.)	Virgin Islands of the United States
+VN	VNM	704	ベトナム社会主義共和国	VIET NAM	Socialist Republic of Viet Nam
+VU	VUT	548	バヌアツ共和国	VANUATU	Republic of Vanuatu
+WF	WLF	876	ワリス・フテュナ諸島	WALLIS AND FUTUNA ISLANDS	
+WS	WSM	882	西サモア	SAMOA	Independent State of Western Samoa
+YE	YEM	887	イエメン共和国	YEMEN	Republic of Yemen
+YT	MYT	175	マイヨット島	MAYOTTE	Territorial collectivity of Mayotte
+YU	YUG	891	(ユーゴスラビア連邦共和国)	YUGOSLAVIA	Federal Republic of Yugoslavia
+ZA	ZAF	710	南アフリカ共和国	SOUTH AFRICA	Republic of South Africa
+ZM	ZMB	894	ザンビア共和国	ZAMBIA	Republic of Zambia
+ZR	ZAR	180	ザイール共和国	ZAIRE	Republic of Zaire
+ZW	ZWE	716	ジンバブエ共和国	ZIMBABWE	Republic of Zimbabwe

@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Collections.Generic;
 
 namespace CSVCombiner
 {
@@ -16,7 +17,7 @@ namespace CSVCombiner
         {
             InitializeComponent();
 
-            //LoadCountry();
+            GetCountryData();
 
             EnableDragDrop(DatePicker_DropFile1);
             EnableDragDrop(DatePicker_DropFile2);
@@ -31,74 +32,53 @@ namespace CSVCombiner
 
             public static string[] CountryCode;
             public static string[] CountryName;
+            
+            public static List<string[]> CountryData = new List<string[]>();
         }
 
-        private static async void LoadCountry()
+        public static void GetCountryData()
         {
-            string CountryCode_Path = "./data\\CountryCode.txt";
-            string CountryName_Path = "./data\\CountryName.txt";
-            int Number_Country = 0;
-            try
+            string path = "./data\\CountryData.csv";
+            using (StreamReader readCsvObject = new StreamReader(path, Encoding.GetEncoding("utf-8")))
             {
-                using (StreamReader sr = new(CountryCode_Path, Encoding.GetEncoding("Shift_JIS")))
+                while (!readCsvObject.EndOfStream)
                 {
-                    for (int i = 0; i < Number_Country; i++)
-                    {
-#pragma warning disable CS8601 // Null 参照代入の可能性があります。
-                        Global.CountryCode[i] = sr.ReadLine();
-                    }
-                }
-
-                using (StreamReader sr = new(CountryName_Path, Encoding.GetEncoding("Shift_JIS")))
-                {
-                    for (int i = 0; i < Number_Country; i++)
-                    {
-                        Global.CountryName[i] = sr.ReadLine();
-#pragma warning restore CS8601 // Null 参照代入の可能性があります。
-                    }
+                    var readCsvLine = readCsvObject.ReadLine();
+                    Global.CountryData.Add(readCsvLine.Split(','));
                 }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("国関連の情報読込みに失敗しました" +
-                    "\nアプリケーションを終了します。");
-                await Task.Delay(2000);
-                Application.Current.Shutdown();
-            }
-
+            return;
         }
 
-        private void EnableDragDrop(Control control)
+            private void EnableDragDrop(Control control)
         {
-            //ドラッグ＆ドロップを受け付けられるようにする
             control.AllowDrop = true;
 
-            //ドラッグが開始された時のイベント処理（マウスカーソルをドラッグ中のアイコンに変更）
             control.PreviewDragOver += (s, e) =>
             {
-                //ファイルがドラッグされたとき、カーソルをドラッグ中のアイコンに変更し、そうでない場合は何もしない。
                 e.Effects = (e.Data.GetDataPresent(DataFormats.FileDrop)) ? DragDropEffects.Copy : e.Effects = DragDropEffects.None;
                 e.Handled = true;
             };
 
-            //ドラッグ＆ドロップが完了した時の処理（ファイル名を取得し、ファイルの中身をTextプロパティに代入）
             control.PreviewDrop += (s, e) =>
             {
-                if (e.Data.GetDataPresent(DataFormats.FileDrop)) // ドロップされたものがファイルかどうか確認する。
+                if (e.Data.GetDataPresent(DataFormats.FileDrop)) 
                 {
-                    string[] path = ((string[])e.Data.GetData(DataFormats.FileDrop));
-                    if (File_Check(path[0]))
+                    string[] paths = ((string[])e.Data.GetData(DataFormats.FileDrop));
+                    string path = paths[0];
+
+                    if (File_Check(path))
                     {
                         if (control.Name == "DatePicker_DropFile1")
                         {
-                            Global.File1_Path = path[0];
+                            Global.File1_Path = path;
                             Global.File1_Exist = true;
                             Frame_DropFile1.Content = Global.File1_Path;
 
                         }
                         else
                         {
-                            Global.File2_Path = path[0];
+                            Global.File2_Path = path;
                             Global.File2_Exist = true;
                             Frame_DropFile2.Content = Global.File2_Path;
                         }
