@@ -39,7 +39,7 @@ namespace CSVCombiner
         public static void GetCountryData()
         {
             string path = "./data\\CountryData.csv";
-            using (StreamReader readCsvObject = new StreamReader(path, Encoding.GetEncoding("utf-8")))
+            using (StreamReader readCsvObject = new StreamReader(path, Encoding.GetEncoding("shift-jis")))
             {
                 while (!readCsvObject.EndOfStream)
                 {
@@ -50,7 +50,7 @@ namespace CSVCombiner
             return;
         }
 
-            private void EnableDragDrop(Control control)
+        private void EnableDragDrop(Control control)
         {
             control.AllowDrop = true;
 
@@ -91,11 +91,6 @@ namespace CSVCombiner
             };
         }
 
-        private void Button_Execute_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("ボタンが押されたんごね");
-        }
-
         private bool File_Check(string path)
         {
             if (path == Global.File1_Path || path == Global.File2_Path)
@@ -114,5 +109,46 @@ namespace CSVCombiner
                 return false;
             }
         }
+
+        private void Button_AddContent(object sender, RoutedEventArgs e)
+        {
+            if(CountryName.status)
+            {
+                List<string[]> CountryCode = new List<string[]>();
+                using(StreamReader readCsvObject = new StreamReader(path, Encoding.GetEncoding("shift-jis")));
+                {
+                    while(!readCsvObject.EndOfStream)
+                    {
+                        var readCsvColum = readCsvObject.ReadColum();
+                        ReadCsvColum.Add(ReadCsvColum.Spilit("\n"));
+                    }
+                }
+                for(int i = 0; i < ReadCsvColum.length;i++)
+                {
+                    for(int j)
+                }
+            }
+            else
+            {
+
+            }
+        }
+        private void Button_Combine(object sender, RoutedEventArgs e)
+        {
+            string[] path;
+            path[0] = Global.File1_Path;
+            path[1] = Global.File2_Path;
+            
+            using(StreamReader readCsvObject = new StreamReader(path,Encoding.GetEncoding("shift-jis")))
+            {
+                while(!readCsvObject.EndOfStream)
+                {
+                    var 
+                }
+            }
+            
+        }
+
+        
     }
 }
