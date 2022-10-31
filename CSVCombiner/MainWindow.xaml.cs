@@ -109,8 +109,7 @@ namespace CSVCombiner
                 return false;
             }
         }
-
-        private void Button_AddContent(object sender, RoutedEventArgs e)
+        private void Button_Ins(object sender, RoutedEventArgs e)
         {
             if(CountryName.status)
             {
@@ -133,7 +132,7 @@ namespace CSVCombiner
 
             }
         }
-        private void Button_Combine(object sender, RoutedEventArgs e)
+        private void Button_Comb(object sender, RoutedEventArgs e)
         {
             string[] path;
             path[0] = Global.File1_Path;
@@ -148,7 +147,7 @@ namespace CSVCombiner
             }
             
         }
-
+        */
         
     }
 }
