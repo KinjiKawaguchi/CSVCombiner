@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace CSVCombiner
 {
@@ -39,7 +40,7 @@ namespace CSVCombiner
         public static void GetCountryData()
         {
             string path = "./data\\CountryData.csv";
-            using (StreamReader readCsvObject = new StreamReader(path, Encoding.GetEncoding("shift-jis")))
+            using (StreamReader readCsvObject = new StreamReader(path, Encoding.GetEncoding("utf-8")))
             {
                 while (!readCsvObject.EndOfStream)
                 {
@@ -84,7 +85,7 @@ namespace CSVCombiner
                         }
                         if (Global.File1_Exist && Global.File2_Exist)
                         {
-                            Button_Execute.Visibility = Visibility.Visible;
+                            Button_Comb.Visibility = Visibility.Visible;
                         }
                     }
                 }
@@ -109,6 +110,7 @@ namespace CSVCombiner
                 return false;
             }
         }
+        /*
         private void Button_Ins(object sender, RoutedEventArgs e)
         {
             if(CountryName.status)
@@ -124,7 +126,7 @@ namespace CSVCombiner
                 }
                 for(int i = 0; i < ReadCsvColum.length;i++)
                 {
-                    for(int j)
+                    return
                 }
             }
             else
@@ -148,6 +150,25 @@ namespace CSVCombiner
             
         }
         */
-        
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            bool yes_parse = false;
+            {
+                // 既存のテキストボックス文字列に、
+                // 今新規に一文字追加された時、その文字列が
+                // 数値として意味があるかどうかをチェック
+                {
+                    var tmp = Num_Colum.Text + e.Text;
+                    yes_parse = Single.TryParse(tmp, out _);
+                }
+            }
+            // 更新したい場合は false, 更新したくない場合は true
+            // を返すべし。（混乱しやすいので注意！）
+            e.Handled = !yes_parse;
+        }
+        private void Button_Ins_CN_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
