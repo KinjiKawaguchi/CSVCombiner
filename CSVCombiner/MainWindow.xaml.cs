@@ -19,8 +19,6 @@ namespace CSVCombiner
             InitializeComponent();
 
             GetCountryData();
-            MessageBox.Show(Global.CountryData[0][3]);
-
 
             EnableDragDrop(DatePicker_DropFile1);
             EnableDragDrop(DatePicker_DropFile2);
@@ -152,32 +150,43 @@ namespace CSVCombiner
                         if (maximum_columns < columns) {
                             maximum_columns = columns;
                         }
+                        readCsvLine += ",";
                         Contents.Add(readCsvLine.Split(','));
                         line_count++;
                     }
                 }
-                String[] Insert_column = new string[line_count];
                 using(FileStream fs = File.Create("./output.csv"));
                 for (int i = 0; i < line_count; i++)
                 {
+                    Console.WriteLine(Contents[i]);
                     for (int j = 0; j < Global.Country_Number; j++)
                     {
                         if (Contents[i][reference_column - 1] == Global.CountryData[j][1])
                         {
                             String CountryName = Global.CountryData[j][3];
                             Contents[i][maximum_columns + 1] = CountryName;
+
+
+                            //Contents[i][maximum_columns + 1] = CountryName;
+                            //MessageBox.Show(Contents[i][maximum_columns + 1]);
                             break;
                         }
                     }
                 }
                 using(FileStream fs = File.Create("./output.csv"));
+                List<string> lines = new List<string>();
+                foreach(var data in Contents)
+                {
+                    lines.Add(string.Join(",", data));
+                }
                 using (StreamWriter sw = new StreamWriter("./output.csv", false, Encoding.GetEncoding("Shift-JIS")))
                 {
-                    foreach (string[] line in Contents)
+                    foreach (var data in lines)
                     {
-                        sw.WriteLine(line);
+                        sw.WriteLine(data);
                     }
                 }
+                
             }
             else
             {
