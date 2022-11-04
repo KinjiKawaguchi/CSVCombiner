@@ -16,7 +16,6 @@
     <PackageReference Include="MaterialDesignColors" Version="2.0.9" />
     <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.2.5" />
-    <PackageReference Include="Moon.NumberBox" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

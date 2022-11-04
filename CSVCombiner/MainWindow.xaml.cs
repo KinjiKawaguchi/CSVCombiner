@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Net.Mail;
+using System.Net.Http;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -11,6 +13,7 @@ namespace CSVCombiner
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -25,26 +28,40 @@ namespace CSVCombiner
 
         public static class Global////Global変数定義
         {
-            public static int Country_Number = 238;
-            public static string? File1_Path;
-            public static string? File2_Path;
-            public static bool File1_Exist = false;
-            public static bool File2_Exist = false;
-            public static List<string[]> CountryData = new List<string[]>();
+#pragma warning disable CA2211 // 非定数フィールドは表示されません
+            public static string? first_file_path;
+            public static string? second_file_path;
+            public static bool first_file_exists_is = false;
+            public static bool second_file_exists_is = false;
+            public static List<string[]> CountryData = new();
+#pragma warning restore CA2211 // 非定数フィールドは表示されません
         }
+
+        public static class Constans
+		{
+			public const int COUNTRY_NUM = 238;
+			public const int COUNTRY_NAME_COLUMN =  3;
+			public const int COUNTRY_CODE_COLUMN = 1;
+		}
+        
         public static void GetCountryData()
         {
             string path = "./data\\CountryData.csv";
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance); // memo: Shift-JISを扱うためのおまじない
-            using (StreamReader readCsvObject = new StreamReader(path, Encoding.GetEncoding("Shift-JIS")))
+            using StreamReader readCsvObject = new(path, Encoding.GetEncoding("Shift-JIS"));
+            while (!readCsvObject.EndOfStream)
             {
-                while (!readCsvObject.EndOfStream)
+                var readCsvLine = readCsvObject.ReadLine();
+                if (readCsvLine == null)
                 {
-                    var readCsvLine = readCsvObject.ReadLine();
-                    Global.CountryData.Add(readCsvLine.Split(','));
+                    MessageBox.Show("重大なエラーです。作成者に連絡してください。" +
+                        "\n【github】https://www.github.com/KinjiKawaguchi");
+                    return;
                 }
+                Global.CountryData.Add(readCsvLine.Split(','));
             }
         }
+		
         private void EnableDragDrop(Control control)
         {
             control.AllowDrop = true;
@@ -59,25 +76,26 @@ namespace CSVCombiner
             {
                 if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 {
+                    //seting path = ((string)e.Data.GetData(DataFormats.FileDrop));←試しましょう
                     string[] paths = ((string[])e.Data.GetData(DataFormats.FileDrop));
                     string path = paths[0];
 
-                    if (File_Check(path))
+                    if (ConfirmFileRightness(path))
                     {
                         if (control.Name == "DatePicker_DropFile1")
                         {
-                            Global.File1_Path = path;
-                            Global.File1_Exist = true;
-                            Frame_DropFile1.Content = Global.File1_Path;
+                            Global.first_file_path = path;
+                            Global.first_file_exists_is = true;
+                            Frame_DropFile1.Content = path;
 
                         }
                         else
                         {
-                            Global.File2_Path = path;
-                            Global.File2_Exist = true;
-                            Frame_DropFile2.Content = Global.File2_Path;
+                            Global.second_file_path = path;
+                            Global.second_file_exists_is = true;
+                            Frame_DropFile2.Content = path;;
                         }
-                        if (Global.File1_Exist && Global.File2_Exist)
+                        if (Global.first_file_exists_is && Global.second_file_exists_is)
                         {
                             Button_Comb.Visibility = Visibility.Visible;
                         }
@@ -85,28 +103,29 @@ namespace CSVCombiner
                 }
             };
         }
-        private bool File_Check(string path)
+		
+        private static bool ConfirmFileRightness(string path)////指定されたファイルが適切か
         {
-            if (path == Global.File1_Path || path == Global.File2_Path)
+            if (path == Global.first_file_path || path == Global.second_file_path)//
             {
                 MessageBox.Show("同じファイルが指定されています。");
+                
                 return false;
             }
-            if (path[^4..] == ".csv")//拡張子チェック
-            {
-                return true;
-            }
-            else
+            if (!(path[^4..] == ".csv"))//拡張子がcsvじゃない場合は不正
             {
                 MessageBox.Show("指令されたファイルはCSVではありません。" +
                     "\nファイルの拡張子を確認してください。");
+                    
                 return false;
             }
+
+            return true;
         }
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            bool yes_parse = false;
+            bool yes_parse;
             {
                 // 既存のテキストボックス文字列に、
                 // 今新規に一文字追加された時、その文字列が
@@ -120,93 +139,129 @@ namespace CSVCombiner
             // を返すべし。（混乱しやすいので注意！）
             e.Handled = !yes_parse;
         }
+        
         private void Button_Ins_CN_Click(object sender, RoutedEventArgs e)
         {
-            if (Global.File1_Exist)
-            {
-                Insert_Column("CountryName", int.Parse(Num_Colum.Text));
-            }
-            else
+            if(Global.first_file_exists_is == false)
             {
                 MessageBox.Show("上のファイルボックスにCSVファイルをドラッグアンドドロップしてください。");
+                return;
             }
+
+            Insert_Column("CountryName", int.Parse(Num_Colum.Text));
         }
+        
         private void Button_Ins_CC_Click(object sender, RoutedEventArgs e)
         {
-            if (Global.File1_Exist)
-            {
-                Insert_Column("CountryCode", int.Parse(Num_Colum.Text));
-            }
-            else
+            if(Global.first_file_exists_is == false)
             {
                 MessageBox.Show("上のファイルボックスにCSVファイルをドラッグアンドドロップしてください。");
+                return;
             }
+
+            Insert_Column("CountryCode", int.Parse(Num_Colum.Text));
         }
-        private static void Insert_Column(String Add, int reference_column)
+        
+        private static void Insert_Column(String object_to_add, int specified_column)
         {
-            int Add_CDC = 1;
-            int Serach_CDC = 3;
-            if (Add == "CountryName")
+            if(specified_column < 1)
             {
-                Add_CDC = 3;
-                Serach_CDC = 1;
+                MessageBox.Show("指定列数は1以上を設定してください");
+                
+                return;
             }
-            if (reference_column >= 1)
+
+            List<string> insert_list;
+            insert_list = CreateInsertList(object_to_add, specified_column);
+#pragma warning disable CS0642 // empty ステートメントが間違っている可能性があります
+            using (FileStream fs = File.Create("./output.csv")) ;
+#pragma warning restore CS0642 // empty ステートメントが間違っている可能性があります
+            using (StreamWriter sw = new("./output.csv", false, Encoding.GetEncoding("Shift-JIS")))
             {
-                List<string[]> Contents = new List<string[]>();
-                int line_count = 0;
-                int maximum_columns = 0;
-                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance); // memo: Shift-JISを扱うためのおまじない
-                using (StreamReader readCsvObject = new(Global.File1_Path, Encoding.GetEncoding("Shift-JIS")))
+                foreach (var line in insert_list)
                 {
-                    while (!readCsvObject.EndOfStream)
-                    {
-                        var readCsvLine = readCsvObject.ReadLine();
-                        int columns = CountChar(readCsvLine, ',');
-                        if (maximum_columns < columns)
-                        {
-                            maximum_columns = columns;
-                        }
-                        readCsvLine += ",";
-                        Contents.Add(readCsvLine.Split(','));
-                        line_count++;
-                    }
+                    sw.WriteLine(line);
                 }
-                using (FileStream fs = File.Create("./output.csv")) ;
-                for (int i = 0; i < line_count; i++)
-                {
-                    Console.WriteLine(Contents[i]);
-                    for (int j = 0; j < Global.Country_Number; j++)
-                    {
-                        if (Contents[i][reference_column - 1] == Global.CountryData[j][Serach_CDC])
-                        {
-                            String CountryName = Global.CountryData[j][Add_CDC];
-                            Contents[i][maximum_columns + 1] = CountryName;
-                            break;
-                        }
-                    }
-                }
-                using (FileStream fs = File.Create("./output.csv")) ;
-                List<string> lines = new List<string>();
-                foreach (var data in Contents)
-                {
-                    lines.Add(string.Join(",", data));
-                }
-                using (StreamWriter sw = new StreamWriter("./output.csv", false, Encoding.GetEncoding("Shift-JIS")))
-                {
-                    foreach (var data in lines)
-                    {
-                        sw.WriteLine(data);
-                    }
-                }
-                MessageBox.Show(Add + "列を追加しました。");
             }
-            else
-            {
-                MessageBox.Show("列数は1以上に設定してください。");
-            }
+            MessageBox.Show(object_to_add + "列を追加しました。");
         }
-        public static int CountChar(string s, char c)
+        
+        private static List<string> CreateInsertList(String object_to_add,int specified_column){
+            int adding_data = 0;
+            int reference_data = 0;
+            List<string> insert_list = new();
+
+            if (object_to_add == "CountryName")
+            {
+                adding_data = Constans.COUNTRY_NAME_COLUMN;
+                reference_data = Constans.COUNTRY_CODE_COLUMN;
+            }
+            else if(object_to_add == "CountryCode")
+            {
+                adding_data = Constans.COUNTRY_CODE_COLUMN;
+                reference_data = Constans.COUNTRY_NAME_COLUMN;
+            }
+            
+            List<string[]> Contents = new();
+            int raw_count = 0;
+            int max_column = 0;
+            
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance); // memo: Shift-JISを扱うためのおまじない
+            if(Global.first_file_path == null)
+            {
+                MessageBox.Show("重大なエラーです。作成者に連絡してください。" +
+                            "\n【github】https://www.github.com/KinjiKawaguchi");
+                Application.Current.Shutdown();
+                return insert_list;
+            }
+            using (StreamReader readCsvObject = new(Global.first_file_path, Encoding.GetEncoding("Shift-JIS")))
+            {
+                while (!readCsvObject.EndOfStream)
+                {
+                    var readCsvLine = readCsvObject.ReadLine();
+                    if (readCsvLine == null)
+                    {
+                        MessageBox.Show("重大なエラーです。作成者に連絡してください。" +
+                                    "\n【github】https://www.github.com/KinjiKawaguchi");
+                        Application.Current.Shutdown();
+                        return insert_list;
+                    }
+                    int columns = CountChar(readCsvLine, ',');
+                    
+                    if (max_column < columns)
+                    {
+                        max_column = columns;
+                    }
+                    
+                    readCsvLine += ",";
+                    Contents.Add(readCsvLine.Split(','));
+                    
+                    raw_count++;
+                }
+            }
+            
+            for (int i = 0; i < raw_count; i++)
+            {
+                for (int j = 0; j < Constans.COUNTRY_NUM; j++)
+                {
+                    if (Contents[i][specified_column - 1] == Global.CountryData[j][reference_data])
+                    {
+                        String CountryName = Global.CountryData[j][adding_data];
+                        Contents[i][max_column + 1] = CountryName;
+                        
+                        break;
+                    }
+                }
+            }
+            
+            foreach (var line in Contents)
+            {
+                insert_list.Add(string.Join(",", line));
+            }
+            return insert_list;
+        }
+        
+        private static int CountChar(string s, char c)
         {
             return s.Length - s.Replace(c.ToString(), "").Length;
         }
