@@ -20,7 +20,7 @@
         </Label>
         <Frame x:Name="Frame_DropFile1" Content="CSVファイルをドラッグアンドドロップしてください。" HorizontalAlignment="Center" Height="250" Margin="0,55,0,0" VerticalAlignment="Top" Width="430" BorderBrush="Red" Foreground="Red" Background="Red"/>
         <Frame x:Name="Frame_DropFile2" Content="CSVファイルをドラッグアンドドロップしてください。" HorizontalAlignment="Center" Height="250" Margin="0,355,0,0" VerticalAlignment="Top" Width="430" BorderBrush="#FF004AFF" Background="#FF0098FF"/>
-        <Button x:Name="Button_Ins_CC" Content="InsertCC" HorizontalAlignment="Left" Height="64" Margin="225,615,0,0" VerticalAlignment="Top" Width="106" Visibility="Visible" Cursor="Hand"/>
+        <Button x:Name="Button_Ins_CC" Content="InsertCC" HorizontalAlignment="Left" Height="64" Margin="225,615,0,0" VerticalAlignment="Top" Width="106" Visibility="Visible" Cursor="Hand" Click="Button_Ins_CC_Click"/>
         <Button x:Name="Button_Ins_CN" Content="InsertCN" HorizontalAlignment="Left" Height="64" Margin="342,615,0,0" VerticalAlignment="Top" Width="106" Visibility="Visible" Cursor="Hand" Click="Button_Ins_CN_Click"/>
         <Button x:Name="Button_Comb" Content="Combine" HorizontalAlignment="Center" Height="64" Margin="0,720,0,0" VerticalAlignment="Top" Width="430" Visibility="Visible" Cursor="Hand"/>
         <DatePicker x:Name="DatePicker_DropFile1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Height="250" Width="430" AllowDrop="True"/>
