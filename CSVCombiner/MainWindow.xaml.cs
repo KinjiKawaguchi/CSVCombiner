@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Linq;
 
 namespace CSVCombiner
 {
@@ -203,7 +204,7 @@ namespace CSVCombiner
                         int columns = CountChar(readCsvLine, ',');
                         if (first_file_max_column < columns)
                         {
-                            first_file_max_column = columns;
+                            first_file_max_column = columns + 1;//列数は","の数+1
                         }
 
                         first_file_contents.Add(readCsvLine.Split(','));
@@ -214,7 +215,7 @@ namespace CSVCombiner
                         int columns = CountChar(readCsvLine, ',');
                         if (second_file_max_column < columns)
                         {
-                            second_file_max_column = columns;
+                            second_file_max_column = columns + 1;
                         }
                         second_file_contents.Add(readCsvLine.Split(','));
                         second_file_row_count++;
@@ -223,7 +224,6 @@ namespace CSVCombiner
             }
 
             ///一致している行数をextract_rowsに格納。[0]列にfirst_file [1]列にsecond_fileの行数が入る。
-            int k = 0;
             int more;
             if(first_file_row_count >= second_file_row_count)
             {
@@ -233,23 +233,24 @@ namespace CSVCombiner
             {
                 more = second_file_row_count;
             }
-            int[][] extract_rows;
-            extract_rows = new int[more][];
-            for(int i = 0; i < first_file_row_count; i++)
+
+            List<int[]> extract_rows = new();
+            int matched_times = 0;
+            for (int i = 0; i < first_file_row_count; i++)
             {
                 for(int j = 0; j < second_file_row_count; j++)
                 {
-                    if (first_file_contents[i][first_specified_column] == second_file_contents[j][second_specified_column])
+                    if (first_file_contents[i][first_specified_column - 1] == second_file_contents[j][second_specified_column - 1])//配列インデックスはユーザ指定の-1だから
                     {
-                        extract_rows[k][0] = i;
-                        extract_rows[k][1] = j;
-                        k++;
+                        int[] input = { i, j };
+                        extract_rows.Add(input);
+                        matched_times++;
                         break;
                     }
                 }
             }
 
-            if (k == 0)
+            if (matched_times == 0)
             {
                 MessageBox.Show("合致する行が見つかりませんでした。" +
                     "指定列を再度確認してください。");
@@ -257,24 +258,16 @@ namespace CSVCombiner
 
             }
 
-            List<string[]> Contents = new();
-            for (int i = 0; i < k; i++)
+            List<string[]> output_contents = new();
+            for (int i = 0; i < matched_times; i++)
             {
-                int j;
-                for(j = 0;j < first_file_max_column;j++)
-                {
-                    Contents[i][j] = first_file_contents[extract_rows[i][0]][j]; 
-                }
-                for(int n = 0; n < second_file_max_column; n++)
-                {
-                    Contents[i][j] = second_file_contents[extract_rows[i][1]][n];
-                    j++;
-                }
-                //Insert_Column[i] = first_file_contents[extract_rows[i][0]].concat(second_file_contents[extract_rows[i][1]]);
+                output_contents.Add(
+                    first_file_contents[extract_rows[i][0]].Concat(second_file_contents[extract_rows[i][1]]).ToArray()
+                    );
             }
 
             List<string> insert_list = new();
-            foreach (var line in Contents)
+            foreach (var line in output_contents)
             {
                 insert_list.Add(string.Join(",", line));
             }
