@@ -153,7 +153,9 @@ namespace CSVCombiner
             int second_file_max_column = 0;
             List<string[]> first_file_contents = new();
             List<string[]> second_file_contents = new();
+#pragma warning disable CS8601 // Null 参照代入の可能性があります。
             String[] paths = {Global.first_file_path, Global.second_file_path};
+#pragma warning restore CS8601 // Null 参照代入の可能性があります。
             for (int i = 0; i < 2; i++)///二つのファイルの中身を二次元配列に格納
             {
                 System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance); // memo: Shift-JISを扱うためのおまじない
