@@ -1,11 +1,10 @@
-﻿using System.Net.Mail;
-using System.Net.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace CSVCombiner
@@ -54,8 +53,7 @@ namespace CSVCombiner
                 var readCsvLine = readCsvObject.ReadLine();
                 if (readCsvLine == null)
                 {
-                    MessageBox.Show("重大なエラーです。作成者に連絡してください。" +
-                        "\n【github】https://www.github.com/KinjiKawaguchi");
+                    ShowError();
                     return;
                 }
                 Global.CountryData.Add(readCsvLine.Split(','));
@@ -89,7 +87,7 @@ namespace CSVCombiner
                             Frame_DropFile1.Content = path;
 
                         }
-                        else
+                        else if (control.Name == "DatePicker_DropFile2")
                         {
                             Global.second_file_path = path;
                             Global.second_file_exists_is = true;
@@ -161,7 +159,140 @@ namespace CSVCombiner
 
             Insert_Column("CountryCode", int.Parse(Num_Colum.Text));
         }
-        
+
+        private void RadioButton_CountryCode_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton_CountryCode.IsChecked = true;
+            RadioButton_CountryName.IsChecked = false;
+        }
+
+        private void RadioButton_CountryName_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton_CountryCode.IsChecked = false;
+            RadioButton_CountryName.IsChecked = true;
+        }
+
+        private void Button_Comb_Click(object sender, RoutedEventArgs e)
+        {
+            int first_specified_column = int.Parse(Conbime_First_Num_Colum.Text);
+            int second_specified_column = int.Parse(Conbime_Second_Num_Colum.Text);
+
+            List<string[]> first_file_contents = new();
+            List<string[]> second_file_contents = new();
+            //List<int[]> extract_rows = new();
+            int first_file_row_count = 0;
+            int second_file_row_count = 0;
+            int first_file_max_column = 0;
+            int second_file_max_column = 0;
+
+            String[] paths = {Global.first_file_path, Global.second_file_path};
+            for (int i = 0; i < 2; i++)///二つのファイルの中身を二次元配列に格納
+            {
+                System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance); // memo: Shift-JISを扱うためのおまじない
+                using StreamReader readCsvObject = new(paths[i], Encoding.GetEncoding("Shift-JIS"));
+                while (!readCsvObject.EndOfStream)
+                {
+                    var readCsvLine = readCsvObject.ReadLine();
+                    if (readCsvLine == null)
+                    {
+                        ShowError();
+                        return;
+                    }
+                    if (i == 0)
+                    {
+                        int columns = CountChar(readCsvLine, ',');
+                        if (first_file_max_column < columns)
+                        {
+                            first_file_max_column = columns;
+                        }
+
+                        first_file_contents.Add(readCsvLine.Split(','));
+                        first_file_row_count++;
+                    }
+                    if (i == 1)
+                    {
+                        int columns = CountChar(readCsvLine, ',');
+                        if (second_file_max_column < columns)
+                        {
+                            second_file_max_column = columns;
+                        }
+                        second_file_contents.Add(readCsvLine.Split(','));
+                        second_file_row_count++;
+                    }
+                }
+            }
+
+            ///一致している行数をextract_rowsに格納。[0]列にfirst_file [1]列にsecond_fileの行数が入る。
+            int k = 0;
+            int more;
+            if(first_file_row_count >= second_file_row_count)
+            {
+                more = first_file_row_count;
+            }
+            else
+            {
+                more = second_file_row_count;
+            }
+            int[][] extract_rows;
+            extract_rows = new int[more][];
+            for(int i = 0; i < first_file_row_count; i++)
+            {
+                for(int j = 0; j < second_file_row_count; j++)
+                {
+                    if (first_file_contents[i][first_specified_column] == second_file_contents[j][second_specified_column])
+                    {
+                        extract_rows[k][0] = i;
+                        extract_rows[k][1] = j;
+                        k++;
+                        break;
+                    }
+                }
+            }
+
+            if (k == 0)
+            {
+                MessageBox.Show("合致する行が見つかりませんでした。" +
+                    "指定列を再度確認してください。");
+                return;
+
+            }
+
+            List<string[]> Contents = new();
+            for (int i = 0; i < k; i++)
+            {
+                int j;
+                for(j = 0;j < first_file_max_column;j++)
+                {
+                    Contents[i][j] = first_file_contents[extract_rows[i][0]][j]; 
+                }
+                for(int n = 0; n < second_file_max_column; n++)
+                {
+                    Contents[i][j] = second_file_contents[extract_rows[i][1]][n];
+                    j++;
+                }
+                //Insert_Column[i] = first_file_contents[extract_rows[i][0]].concat(second_file_contents[extract_rows[i][1]]);
+            }
+
+            List<string> insert_list = new();
+            foreach (var line in Contents)
+            {
+                insert_list.Add(string.Join(",", line));
+            }
+
+#pragma warning disable CS0642 // empty ステートメントが間違っている可能性があります
+            using (FileStream fs = File.Create("./output.csv")) ;
+#pragma warning restore CS0642 // empty ステートメントが間違っている可能性があります
+            using (StreamWriter sw = new("./output.csv", false, Encoding.GetEncoding("Shift-JIS")))
+            {
+                foreach (var line in insert_list)
+                {
+                    sw.WriteLine(line);
+                }
+            }
+
+            MessageBox.Show("結合が終了しました。");
+        }
+
         private static void Insert_Column(String object_to_add, int specified_column)
         {
             if(specified_column < 1)
@@ -209,9 +340,7 @@ namespace CSVCombiner
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance); // memo: Shift-JISを扱うためのおまじない
             if(Global.first_file_path == null)
             {
-                MessageBox.Show("重大なエラーです。作成者に連絡してください。" +
-                            "\n【github】https://www.github.com/KinjiKawaguchi");
-                Application.Current.Shutdown();
+                ShowError();
                 return insert_list;
             }
             using (StreamReader readCsvObject = new(Global.first_file_path, Encoding.GetEncoding("Shift-JIS")))
@@ -221,9 +350,7 @@ namespace CSVCombiner
                     var readCsvLine = readCsvObject.ReadLine();
                     if (readCsvLine == null)
                     {
-                        MessageBox.Show("重大なエラーです。作成者に連絡してください。" +
-                                    "\n【github】https://www.github.com/KinjiKawaguchi");
-                        Application.Current.Shutdown();
+                        ShowError();
                         return insert_list;
                     }
                     int columns = CountChar(readCsvLine, ',');
@@ -264,6 +391,14 @@ namespace CSVCombiner
         private static int CountChar(string s, char c)
         {
             return s.Length - s.Replace(c.ToString(), "").Length;
+        }
+
+        static async void ShowError()
+        {
+            MessageBox.Show("重大なエラーです。作成者に連絡してください。" +
+                            "\n【github】https://www.github.com/KinjiKawaguchi");
+            await Task.Delay(1500);
+            Application.Current.Shutdown();
         }
     }
 }

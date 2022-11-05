@@ -8,24 +8,19 @@
         Title="MainWindow" Height="800" Width="450">
     <Grid>
         <Frame x:Name="Top" HorizontalAlignment="Center" Height="50" VerticalAlignment="Top" Width="450" Background="#FFAB00FF"/>
-        <Label x:Name="Title" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="320" FontSize="40" FontFamily="Arial Black" RenderTransformOrigin="0.5,0.5" Content="CSVComviner" Margin="50,0,0,0">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-0.269"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="-0.329"/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
+        <Label x:Name="Title" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="320" FontSize="40" FontFamily="Arial Black" RenderTransformOrigin="0.5,0.5" Content="CSVComviner" Margin="50,0,0,0"/>
         <Frame x:Name="Frame_DropFile1" Content="CSVファイルをドラッグアンドドロップしてください。" HorizontalAlignment="Center" Height="250" Margin="0,55,0,0" VerticalAlignment="Top" Width="430" BorderBrush="Red" Foreground="Red" Background="Red"/>
         <Frame x:Name="Frame_DropFile2" Content="CSVファイルをドラッグアンドドロップしてください。" HorizontalAlignment="Center" Height="250" Margin="0,355,0,0" VerticalAlignment="Top" Width="430" BorderBrush="#FF004AFF" Background="#FF0098FF"/>
         <Button x:Name="Button_Ins_CC" Content="InsertCC" HorizontalAlignment="Left" Height="64" Margin="225,615,0,0" VerticalAlignment="Top" Width="106" Visibility="Visible" Cursor="Hand" Click="Button_Ins_CC_Click"/>
         <Button x:Name="Button_Ins_CN" Content="InsertCN" HorizontalAlignment="Left" Height="64" Margin="342,615,0,0" VerticalAlignment="Top" Width="106" Visibility="Visible" Cursor="Hand" Click="Button_Ins_CN_Click"/>
-        <Button x:Name="Button_Comb" Content="Combine" HorizontalAlignment="Center" Height="64" Margin="0,720,0,0" VerticalAlignment="Top" Width="430" Visibility="Visible" Cursor="Hand"/>
+        <Button x:Name="Button_Comb" Content="Combine" HorizontalAlignment="Center" Height="64" Margin="0,720,0,0" VerticalAlignment="Top" Width="430" Visibility="Visible" Cursor="Hand" Click="Button_Comb_Click"/>
         <DatePicker x:Name="DatePicker_DropFile1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Height="250" Width="430" AllowDrop="True"/>
         <DatePicker x:Name="DatePicker_DropFile2" HorizontalAlignment="Center" Margin="0,355,0,0" VerticalAlignment="Top" Height="250" Width="430" AllowDrop="True"/>
         <TextBox x:Name="Num_Colum" PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Left" Height="30" Margin="315,685,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="54"/>
+        <RadioButton x:Name="RadioButton_CountryName" Content="国名一致" HorizontalAlignment="Left" Margin="36,670,0,0" VerticalAlignment="Top" Checked="RadioButton_CountryName_Checked"/>
+        <RadioButton x:Name="RadioButton_CountryCode" Content="国コード一致" HorizontalAlignment="Left" Margin="30,647,0,0" VerticalAlignment="Top" IsChecked="True" Checked="RadioButton_CountryCode_Checked"/>
+        <TextBox x:Name="Conbime_First_Num_Colum" PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Left" Height="30" Margin="156,635,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="54"/>
+        <TextBox x:Name="Conbime_Second_Num_Colum" PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Left" Height="30" Margin="156,670,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="54"/>
 
     </Grid>
 </Window>
