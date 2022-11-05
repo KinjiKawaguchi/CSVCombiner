@@ -40,7 +40,7 @@ namespace CSVCombiner
         public static class Constans
 		{
 			public const int COUNTRY_NUM = 238;
-			public const int COUNTRY_NAME_COLUMN =  3;
+			public const int COUNTRY_NAME_COLUMN =  4;
 			public const int COUNTRY_CODE_COLUMN = 1;
 		}
         
@@ -364,10 +364,10 @@ namespace CSVCombiner
             {
                 for (int j = 0; j < Constans.COUNTRY_NUM; j++)
                 {
-                    if (Contents[i][specified_column - 1] == Global.CountryData[j][reference_data])
+                    if (Contents[i][specified_column - 1].ToUpper() == Global.CountryData[j][reference_data])
                     {
                         String CountryName = Global.CountryData[j][adding_data];
-                        Contents[i][max_column + 1] = CountryName;
+                        Contents[i][max_column] = CountryName;
                         
                         break;
                     }
