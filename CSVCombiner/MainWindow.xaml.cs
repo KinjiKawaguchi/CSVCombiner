@@ -122,7 +122,7 @@ namespace CSVCombiner
             return true;
         }
 
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)////数字のみ入力されるように(全角には非対応)
         {
             bool yes_parse;
             {
@@ -138,54 +138,21 @@ namespace CSVCombiner
             // を返すべし。（混乱しやすいので注意！）
             e.Handled = !yes_parse;
         }
-        
-        private void Button_Ins_CN_Click(object sender, RoutedEventArgs e)
-        {
-            if(Global.first_file_exists_is == false)
-            {
-                MessageBox.Show("上のファイルボックスにCSVファイルをドラッグアンドドロップしてください。");
-                return;
-            }
-
-            Insert_Column("CountryName", int.Parse(Num_Colum.Text));
-        }
-        
-        private void Button_Ins_CC_Click(object sender, RoutedEventArgs e)
-        {
-            if(Global.first_file_exists_is == false)
-            {
-                MessageBox.Show("上のファイルボックスにCSVファイルをドラッグアンドドロップしてください。");
-                return;
-            }
-
-            Insert_Column("CountryCode", int.Parse(Num_Colum.Text));
-        }
-
-        private void RadioButton_CountryCode_Checked(object sender, RoutedEventArgs e)
-        {
-            RadioButton_CountryCode.IsChecked = true;
-            RadioButton_CountryName.IsChecked = false;
-        }
-
-        private void RadioButton_CountryName_Checked(object sender, RoutedEventArgs e)
-        {
-            RadioButton_CountryCode.IsChecked = false;
-            RadioButton_CountryName.IsChecked = true;
-        }
 
         private void Button_Comb_Click(object sender, RoutedEventArgs e)
         {
+            //ユーザが指定した列をint型で取得
             int first_specified_column = int.Parse(Conbime_First_Num_Colum.Text);
             int second_specified_column = int.Parse(Conbime_Second_Num_Colum.Text);
 
-            List<string[]> first_file_contents = new();
-            List<string[]> second_file_contents = new();
-            //List<int[]> extract_rows = new();
+
+            ///指定された２つのCSVのを二次元配列に格納
             int first_file_row_count = 0;
             int second_file_row_count = 0;
             int first_file_max_column = 0;
             int second_file_max_column = 0;
-
+            List<string[]> first_file_contents = new();
+            List<string[]> second_file_contents = new();
             String[] paths = {Global.first_file_path, Global.second_file_path};
             for (int i = 0; i < 2; i++)///二つのファイルの中身を二次元配列に格納
             {
@@ -215,7 +182,7 @@ namespace CSVCombiner
                         int columns = CountChar(readCsvLine, ',');
                         if (second_file_max_column < columns)
                         {
-                            second_file_max_column = columns + 1;
+                            second_file_max_column = columns + 1;//列数は","の数+1
                         }
                         second_file_contents.Add(readCsvLine.Split(','));
                         second_file_row_count++;
@@ -223,17 +190,8 @@ namespace CSVCombiner
                 }
             }
 
+            ///一致している行を探索する
             ///一致している行数をextract_rowsに格納。[0]列にfirst_file [1]列にsecond_fileの行数が入る。
-            int more;
-            if(first_file_row_count >= second_file_row_count)
-            {
-                more = first_file_row_count;
-            }
-            else
-            {
-                more = second_file_row_count;
-            }
-
             List<int[]> extract_rows = new();
             int matched_times = 0;
             for (int i = 0; i < first_file_row_count; i++)
@@ -250,26 +208,28 @@ namespace CSVCombiner
                 }
             }
 
+            ///一致している行がなかった場合、はユーザに警告する。
             if (matched_times == 0)
             {
                 MessageBox.Show("合致する行が見つかりませんでした。" +
                     "指定列を再度確認してください。");
                 return;
-
             }
 
-            List<string[]> output_contents = new();
+            ///一致している同士を結合する。
+            List<string[]> concatenated_contents = new();
             for (int i = 0; i < matched_times; i++)
             {
-                output_contents.Add(
+                concatenated_contents.Add(
                     first_file_contents[extract_rows[i][0]].Concat(second_file_contents[extract_rows[i][1]]).ToArray()
                     );
             }
 
-            List<string> insert_list = new();
-            foreach (var line in output_contents)
+            ///新しいCSVとして出力する
+            List<string> output_contents = new();
+            foreach (var line in concatenated_contents)
             {
-                insert_list.Add(string.Join(",", line));
+                output_contents.Add(string.Join(",", line));
             }
 
 #pragma warning disable CS0642 // empty ステートメントが間違っている可能性があります
@@ -277,15 +237,37 @@ namespace CSVCombiner
 #pragma warning restore CS0642 // empty ステートメントが間違っている可能性があります
             using (StreamWriter sw = new("./output.csv", false, Encoding.GetEncoding("Shift-JIS")))
             {
-                foreach (var line in insert_list)
+                foreach (var content in output_contents)
                 {
-                    sw.WriteLine(line);
+                    sw.WriteLine(content);
                 }
             }
 
             MessageBox.Show("結合が終了しました。");
         }
 
+        private void Button_Ins_CN_Click(object sender, RoutedEventArgs e)
+        {
+            if(Global.first_file_exists_is == false)
+            {
+                MessageBox.Show("上のファイルボックスにCSVファイルをドラッグアンドドロップしてください。");
+                return;
+            }
+
+            Insert_Column("CountryName", int.Parse(Num_Colum.Text));
+        }
+        
+        private void Button_Ins_CC_Click(object sender, RoutedEventArgs e)
+        {
+            if(Global.first_file_exists_is == false)
+            {
+                MessageBox.Show("上のファイルボックスにCSVファイルをドラッグアンドドロップしてください。");
+                return;
+            }
+
+            Insert_Column("CountryCode", int.Parse(Num_Colum.Text));
+        }
+        
         private static void Insert_Column(String object_to_add, int specified_column)
         {
             if(specified_column < 1)
@@ -364,10 +346,10 @@ namespace CSVCombiner
             {
                 for (int j = 0; j < Constans.COUNTRY_NUM; j++)
                 {
-                    if (Contents[i][specified_column - 1].ToUpper() == Global.CountryData[j][reference_data])
+                    if (Contents[i][specified_column - 1] == Global.CountryData[j][reference_data])
                     {
                         String CountryName = Global.CountryData[j][adding_data];
-                        Contents[i][max_column] = CountryName;
+                        Contents[i][max_column + 1] = CountryName;
                         
                         break;
                     }
