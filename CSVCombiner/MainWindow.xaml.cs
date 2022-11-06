@@ -192,39 +192,30 @@ namespace CSVCombiner
                 }
             }
 
-            ///一致している行を探索する
-            ///一致している行数をextract_rowsに格納。[0]列にfirst_file [1]列にsecond_fileの行数が入る。
-            List<int[]> extract_rows = new();
+            ///一致している同士を結合する。
             int matched_times = 0;
-            for (int i = 0; i < first_file_row_count; i++)
+            List<string[]> concatenated_contents = new();
+            for(int i = 0; i < first_file_row_count; i++)
             {
                 for(int j = 0; j < second_file_row_count; j++)
                 {
-                    if (first_file_contents[i][first_specified_column - 1] == second_file_contents[j][second_specified_column - 1])//配列インデックスはユーザ指定の-1だから
+                    if (first_file_contents[i][first_specified_column - 1] == second_file_contents[j][second_specified_column - 1])
                     {
-                        int[] input = { i, j };
-                        extract_rows.Add(input);
+                        concatenated_contents.Add(
+                            first_file_contents[i].Concat(second_file_contents[j]).ToArray());
+
                         matched_times++;
+
                         break;
                     }
                 }
             }
 
-            ///一致している行がなかった場合、はユーザに警告する。
-            if (matched_times == 0)
+            if(matched_times == 0)
             {
                 MessageBox.Show("合致する行が見つかりませんでした。" +
                     "指定列を再度確認してください。");
                 return;
-            }
-
-            ///一致している同士を結合する。
-            List<string[]> concatenated_contents = new();
-            for (int i = 0; i < matched_times; i++)
-            {
-                concatenated_contents.Add(
-                    first_file_contents[extract_rows[i][0]].Concat(second_file_contents[extract_rows[i][1]]).ToArray()
-                    );
             }
 
             ///新しいCSVとして出力する
@@ -234,16 +225,7 @@ namespace CSVCombiner
                 output_contents.Add(string.Join(",", line));
             }
 
-#pragma warning disable CS0642 // empty ステートメントが間違っている可能性があります
-            using (FileStream fs = File.Create("./output.csv")) ;
-#pragma warning restore CS0642 // empty ステートメントが間違っている可能性があります
-            using (StreamWriter sw = new("./output.csv", false, Encoding.GetEncoding("Shift-JIS")))
-            {
-                foreach (var content in output_contents)
-                {
-                    sw.WriteLine(content);
-                }
-            }
+            WriteLine(output_contents);
 
             MessageBox.Show("結合が終了しました。");
         }
@@ -279,19 +261,22 @@ namespace CSVCombiner
                 return;
             }
 
-            List<string> insert_list;
-            insert_list = CreateInsertList(object_to_add, specified_column);
+            WriteLine(CreateInsertList(object_to_add, specified_column));
+
+
+            MessageBox.Show(object_to_add + "列を追加しました。");
+        }
+
+        private static void WriteLine(List<string> insert_list)
+        {
 #pragma warning disable CS0642 // empty ステートメントが間違っている可能性があります
             using (FileStream fs = File.Create("./output.csv")) ;
 #pragma warning restore CS0642 // empty ステートメントが間違っている可能性があります
-            using (StreamWriter sw = new("./output.csv", false, Encoding.GetEncoding("Shift-JIS")))
+            using StreamWriter sw = new("./output.csv", false, Encoding.GetEncoding("Shift-JIS"));
+            foreach (var line in insert_list)
             {
-                foreach (var line in insert_list)
-                {
-                    sw.WriteLine(line);
-                }
+                sw.WriteLine(line);
             }
-            MessageBox.Show(object_to_add + "列を追加しました。");
         }
         
         private static List<string> CreateInsertList(String object_to_add,int specified_column){
