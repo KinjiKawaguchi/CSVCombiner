@@ -226,7 +226,7 @@ namespace CSVCombiner
                 output_contents.Add(string.Join(",", line));
             }
 
-            WriteLine(output_contents);
+            Export(output_contents);
 
             MessageBox.Show("結合が終了しました。");
         }
@@ -262,13 +262,13 @@ namespace CSVCombiner
                 return;
             }
 
-            WriteLine(CreateInsertList(object_to_add, specified_column));
+            Export(CreateInsertList(object_to_add, specified_column));
 
 
             MessageBox.Show(object_to_add + "列を追加しました。");
         }
 
-        private static void WriteLine(List<string> insert_list)
+        private static void Export(List<string> insert_list)
         {
             File.Create("./output.csv") ;
             using StreamWriter sw = new("./output.csv", false, Encoding.GetEncoding("Shift-JIS"));

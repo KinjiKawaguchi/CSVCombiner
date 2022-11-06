@@ -17,8 +17,8 @@
         <DatePicker x:Name="DatePicker_DropFile1" HorizontalAlignment="Center" Margin="0,55,0,0" VerticalAlignment="Top" Height="250" Width="430" AllowDrop="True"/>
         <DatePicker x:Name="DatePicker_DropFile2" HorizontalAlignment="Center" Margin="0,355,0,0" VerticalAlignment="Top" Height="250" Width="430" AllowDrop="True"/>
         <TextBox x:Name="Num_Colum" PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Left" Height="30" Margin="315,685,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="54"/>
-        <RadioButton x:Name="RadioButton_CountryName" Content="国名一致" HorizontalAlignment="Left" Margin="36,670,0,0" VerticalAlignment="Top" Checked="RadioButton_CountryName_Checked"/>
-        <RadioButton x:Name="RadioButton_CountryCode" Content="国コード一致" HorizontalAlignment="Left" Margin="30,647,0,0" VerticalAlignment="Top" IsChecked="True" Checked="RadioButton_CountryCode_Checked"/>
+        <RadioButton x:Name="RadioButton_CountryName" Content="国名一致" HorizontalAlignment="Left" Margin="36,670,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="RadioButton_CountryCode" Content="国コード一致" HorizontalAlignment="Left" Margin="30,647,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <TextBox x:Name="Conbime_First_Num_Colum" PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Left" Height="30" Margin="156,635,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="54"/>
         <TextBox x:Name="Conbime_Second_Num_Colum" PreviewTextInput="TextBox_PreviewTextInput" HorizontalAlignment="Left" Height="30" Margin="156,670,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="54"/>
 
