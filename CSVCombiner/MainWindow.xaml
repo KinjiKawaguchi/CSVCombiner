@@ -8,12 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
     Width="800"
-    Height="450"
+    Height="600"
     mc:Ignorable="d">
     <StackPanel>
         <materialDesign:ColorZone
             Padding="16"
-            Mode="PrimaryLight">
+            Mode="Inverted" Background="#FF008613">
             <StackPanel
                 Orientation="Horizontal">
                 <ToggleButton
@@ -25,24 +25,70 @@
             </StackPanel>
         </materialDesign:ColorZone>
 
-<materialDesign:Card>
-  <TabControl
-    Width="300"
-    materialDesign:ColorZoneAssist.Mode="PrimaryLight"
-    Style="{StaticResource MaterialDesignFilledTabControl}" HorizontalAlignment="Left">
-    <TabItem
-      Header="ファイル1">
-        <TextBlock x:Name="FirstFileDrop"
-        Margin="8"
-        Text="CSVファイルをドロップしてください。" AllowDrop="True" />
-    </TabItem>
-    <TabItem
-      Header="ファイル2">
-        <TextBlock x:Name="SecondFileDrop"
-        Margin="8"
-        Text="CSVファイルをドロップしてください。" AllowDrop="True" />
-    </TabItem>
-  </TabControl>
-</materialDesign:Card>
+        <materialDesign:Card Height="125">
+            <TabControl
+                Width="800"
+                materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+                Style="{StaticResource MaterialDesignFilledTabControl}" HorizontalAlignment="Center">
+                <TabItem
+                    Header="ファイル1">
+                    <TextBlock x:Name="FirstFileDrop"
+                    Margin="8"
+                    AllowDrop="True" Foreground="Black" OpacityMask="Black" ><Run/><LineBreak/><Run Text="
+                                                                                                    "/><Run Text="1つ目CSVファイルをドロップしてください。"/>
+                    </TextBlock>
+                </TabItem>
+                <TabItem
+                    Header="ファイル2">
+                    <TextBlock x:Name="SecondFileDrop"
+                    Margin="8"
+                                        AllowDrop="True" Foreground="Black" OpacityMask="Black" ><Run/><LineBreak/><Run Text="
+                                                                                                    "/><Run Text="2つ目CSVファイルをドロップしてください。"/>
+                    </TextBlock>
+                </TabItem>
+            </TabControl>
+        </materialDesign:Card>
+
+        <StackPanel x:Name="AboutFirstFile">
+            <TabControl
+                Width="800"
+                materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+                Style="{StaticResource MaterialDesignFilledTabControl}" HorizontalAlignment="Center" Background="Red">
+                <TabItem Header="ファイル1"/>
+            </TabControl>
+            <ScrollViewer Height="50">
+                <TextBlock x:Name="FirstFile_Path"
+                            Text="ファイルパス:NULL"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Stretch"
+                            TextWrapping="Wrap" Width="800" Height="20" IsEnabled="False" />
+            </ScrollViewer>
+            <TextBlock x:Name="FirstFile_Name"
+                       Text="ファイル名:NULL"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       TextWrapping="Wrap" Width="800" Height="20" IsEnabled="False" />
+        </StackPanel>
+        <StackPanel x:Name="AboutSecondFile">
+            <TabControl
+                    Width="800"
+                    materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+                    Style="{StaticResource MaterialDesignFilledTabControl}" HorizontalAlignment="Center">
+                <TabItem Header="ファイル2"/>
+            </TabControl>
+            <ScrollViewer Height="50">
+                <TextBlock x:Name="SecondFile_Path"
+                            Text="ファイルパス:NULL"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Stretch"
+                            TextWrapping="Wrap" Width="800" Height="20" IsEnabled="False" />
+            </ScrollViewer>
+            <TextBlock x:Name="SecondFile_Name"
+                       Text="ファイル名:NULL"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Stretch"
+                       TextWrapping="Wrap" Width="800" Height="20" IsEnabled="False" />
+        </StackPanel>
+
     </StackPanel>
 </Window>
