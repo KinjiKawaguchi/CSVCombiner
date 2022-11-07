@@ -3,9 +3,15 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:CSVCombiner"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="13"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
     Title="MainWindow"
     Width="800"
     Height="600"
@@ -89,6 +95,26 @@
                        HorizontalAlignment="Stretch"
                        TextWrapping="Wrap" Width="800" Height="20" IsEnabled="False" />
         </StackPanel>
+        <TabControl
+                Width="800"
+                materialDesign:ColorZoneAssist.Mode="PrimaryLight"
+                Style="{StaticResource MaterialDesignFilledTabControl}" HorizontalAlignment="Center" Background="Red">
+            <TabItem Header="結合オプション"/>
+        </TabControl>
+        <StackPanel>
+            <TextBox
+                  Width="95"
+                  materialDesign:HintAssist.Hint="ファイル1の参照列"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalAlignment="Left"/>
+            <TextBlock 
+              Text="列"
 
+              TextWrapping="Wrap" Width="14" Height="20" IsEnabled="False" />
+            <TextBox
+                  Width="95"
+                  materialDesign:HintAssist.Hint="ファイル2の参照列"
+                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                  Margin="0,-55,456,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        </StackPanel>
     </StackPanel>
 </Window>
