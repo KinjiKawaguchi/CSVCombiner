@@ -22,8 +22,8 @@ namespace CSVCombiner
 
             GetCountryData();
 
-            EnableDragDrop(DatePicker_DropFile1);
-            EnableDragDrop(DatePicker_DropFile2);
+            EnableDragDrop(FirstFileDrop);
+            EnableDragDrop(SecondFileDrop);
         }
 
         public static class Global////Global変数定義
@@ -38,13 +38,13 @@ namespace CSVCombiner
         }
 
         public static class Constans
-		{
-			public const int COUNTRY_NUM = 238;
-			public const int COUNTRY_NAME_COLUMN =  4;
-			public const int COUNTRY_CODE_COLUMN = 1;
+        {
+            public const int COUNTRY_NUM = 238;
+            public const int COUNTRY_NAME_COLUMN = 4;
+            public const int COUNTRY_CODE_COLUMN = 1;
             public const String extension = ".csv";
-		}
-        
+        }
+
         public static void GetCountryData()
         {
             string path = "./data\\CountryData.csv";
@@ -61,8 +61,8 @@ namespace CSVCombiner
                 Global.CountryData.Add(readCsvLine.Split(','));
             }
         }
-		
-        private void EnableDragDrop(Control control)
+
+        private void EnableDragDrop(TextBlock control)
         {
             control.AllowDrop = true;
 
@@ -76,24 +76,23 @@ namespace CSVCombiner
             {
                 if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 {
-                    //seting path = ((string)e.Data.GetData(DataFormats.FileDrop));←試しましょう
                     string[] paths = ((string[])e.Data.GetData(DataFormats.FileDrop));
                     string path = paths[0];
 
                     if (ConfirmFileRightness(path))
                     {
-                        if (control.Name == "DatePicker_DropFile1")
+                        if (control.Name == "FirstFileDrop")
                         {
                             Global.first_file_path = path;
                             Global.first_file_exists_is = true;
-                            Frame_DropFile1.Content = path;
+                            FirstFileDrop.Text = path;
 
                         }
-                        else if (control.Name == "DatePicker_DropFile2")
+                        else if (control.Name == "SecondFileDrop")
                         {
                             Global.second_file_path = path;
                             Global.second_file_exists_is = true;
-                            Frame_DropFile2.Content = path;;
+                            FirstFileDrop.Text = path;
                         }
                         /*
                         if (Global.first_file_exists_is && Global.second_file_exists_is)
@@ -105,25 +104,27 @@ namespace CSVCombiner
                 }
             };
         }
-		
+
+
         private static bool ConfirmFileRightness(string path)////指定されたファイルが適切か
         {
             if (path == Global.first_file_path || path == Global.second_file_path)//
             {
                 MessageBox.Show("同じファイルが指定されています。");
-                
+
                 return false;
             }
             if (!(path[^Constans.extension.Length..] == ".csv"))//拡張子がcsvじゃない場合は不正
             {
                 MessageBox.Show("指令されたファイルはCSVではありません。" +
                     "\nファイルの拡張子を確認してください。");
-                    
+
                 return false;
             }
 
             return true;
         }
+        /*
 
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)////数字のみ入力されるように(全角には非対応)
         {
@@ -353,13 +354,18 @@ namespace CSVCombiner
         {
             return s.Length - s.Replace(c.ToString(), "").Length;
         }
-
+        */
         static async void ShowError()
         {
             MessageBox.Show("重大なエラーです。作成者に連絡してください。" +
                             "\n【github】https://www.github.com/KinjiKawaguchi");
             await Task.Delay(1500);
             Application.Current.Shutdown();
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="618244_excel_2000x2000.png" />
+    <None Remove="Drag and Drop.png" />
     <None Remove="icon.png" />
   </ItemGroup>
 
@@ -19,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Drag and Drop.png" />
     <Resource Include="icon.png" />
   </ItemGroup>
 
